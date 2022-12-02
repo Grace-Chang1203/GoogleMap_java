@@ -1,5 +1,6 @@
 package com.example.googlemap_java;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -21,8 +22,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private final static int REQUEST_PERMISSIONS = 1;
 
-
-    public void onRequestPermissionResult(int requestCode,String permissions[],int[] grantResults) {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case REQUEST_PERMISSIONS:
                 for(int result:grantResults) {
@@ -33,9 +35,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         map.getMapAsync(this);
                     }
                 }
-            break;
+                break;
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         map.setMyLocationEnabled(true);
 
         MarkerOptions m1 = new MarkerOptions();
-        m1.position(new LatLng(25.033611,121.517081));
+        m1.position(new LatLng(25.033611,121.565000));
         m1.title("台北101");
         m1.draggable(true);
         map.addMarker(m1);
